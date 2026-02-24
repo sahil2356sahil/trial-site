@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Animated Site</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Birthday wish moved inline below the Explore button -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="title">Welcome to the Mine Site!</h1>
+      <p class="subtitle">Specially made for you Miss Amina.</p>
+      
+      
+      
+      
+      <!-- Interactive Birthday Question -->
+      <div class="question-container" id="question-container">
+        <h2>Can I ask you something?</h2>
+        <div class="button-group">
+          <button class="btn question-btn" onclick="showBirthdayPopup()">Yes</button>
+          <button class="btn question-btn" onclick="showNoPopup()">No</button>
+        </div>
+      </div>
+
+      <!-- First Popup: Birthday Message -->
+      <div id="birthday-popup" class="custom-popup">
+        <div class="popup-content">
+          <h2>🎂 Today is someone's special birthday! 🎂</h2>
+          <button class="btn" onclick="showSpecialMessage()">Ohh</button>
+        </div>
+      </div>
+
+      <!-- Second Popup: Special Message -->
+      <div id="special-popup" class="custom-popup">
+        <div class="popup-content">
+          <h2>My special one is you, kutti! Happiest birthday jaanu! 🥳💕</h2>
+        </div>
+      </div>
+
+      <!-- No Popup -->
+      <div id="no-popup" class="custom-popup">
+        <div class="popup-content">
+          <h2>You have to listen, you don't have any other options! 😄</h2>
+          <button class="btn" onclick="closeNoPopup()">OK</button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-shapes" aria-hidden="true">
+      <span class="shape s1"></span>
+      <span class="shape s2"></span>
+      <span class="shape s3"></span>
+      <span class="shape s4"></span>
+    </div>
+  </header>
+
+
+  <!-- User-uploaded memories grid -->
+  <section class="user-section" style="max-width:1100px;margin:2rem auto;padding:0 1.25rem;">
+    <input id="user-files" type="file" accept="image/*" multiple style="display: none;">
+    <button class="btn file-btn" onclick="document.getElementById('user-files').click()">Upload Memories</button>
+
+    <div class="memories-grid" id="memories-grid"></div>
+  </section>
+
+  <!-- Image modal -->
+  <div id="image-modal">
+    <img id="modal-img" alt="Full view">
+    <button id="close-modal">Close</button>
+  </div>
+
+  <footer class="footer">
+    <small>Made with CSS animations • Demo</small>
+  </footer>
+  <script>
+  (function(){
+    const MAX_IMAGES = 50;
+    const STORAGE_KEY = 'permanent_images';
+    
+    // Get DOM elements
+    const grid = document.getElementById('memories-grid');
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const fileInput = document.getElementById('user-files');
+    const closeModal = document.getElementById('close-modal');
+    
+    // Load saved images from localStorage on page load
+    function loadSavedImages() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch(e) {
+        console.error('Error loading saved images:', e);
+        return [];
+      }
+    }
+
+    // Save all current grid images to localStorage permanently  
+    function saveImagesToLocalStore() {
+      try {
+        const imgElements = grid.querySelectorAll('.permanent-img') || [];
+        const srcArray = Array.from(imgElements).map(img => img.src);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(srcArray));
+        console.log(`Saved ${srcArray.length} images permanently`);
+      } catch(e) {
+        console.error("Error saving images to localstore:", e);
+      }
+    }
+    
+    // Restore previously saved permanent images
+    function restorePermanentImages() {
+      try {
+        const saved = loadSavedImages();
+        if (saved.length === 0) return;
+        for (const srcOfSaved of saved) {
+          addImageToGrid(srcOfSaved, true);
+        }
+        console.log(`Restored ${saved.length} permanent images`);
+      } catch(e) {
+        console.error("Error restoring permanent images:", e);
+      }
+    }
+    
+    // Add single Image element
+    function addImageToGrid(srcUrl, isPermanent) {
+      const img = document.createElement("img");
+      img.src = srcUrl;
+      if (isPermanent) {
+        img.className = "permanent-img";
+      }
+      img.style.opacity = "0";
+      grid.appendChild(img);
+      setTimeout(() => {
+        img.style.opacity = "1";
+      }, 100);
+      
+      // Add click listener for modal
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.style.display = 'flex';
+      });
+    }
+    
+    // Delete button handler
+    function showDeleteButtons() {
+      document.querySelectorAll(".delete-btn").forEach(btn => btn.remove());
+      document.querySelectorAll("#memories-grid > .permanent-img").forEach((imgs, i) => {
+        const delBtn = document.createElement("button");
+        delBtn.innerText = "X";
+        delBtn.className = "delete-btn";
+        delBtn.title = "Delete Image";
+        Object.assign(delBtn.style, {
+          position: "absolute",
+          top: "5px",
+          right: "5px",
+          background: "red",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer"
+        });
+        if (imgs.parentNode) {
+          imgs.parentNode.appendChild(delBtn);
+        }
+      });
+    }
+
+    // Delete button event listener
+    function deleteImageHandler(event) {
+      if (!event.target.classList.contains("delete-btn")) return;
+      
+      // Get the image element (delete button is sibling of image)
+      const imgElement = event.target.previousElementSibling;
+      if (imgElement) {
+        imgElement.remove();
+      }
+      event.target.remove();
+      
+      // Save updated list to localStorage
+      saveImagesToLocalStore();
+    }
+    
+    // Set up event listeners
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal on click outside image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Listen for delete button clicks (using delegation)
+    grid.addEventListener('click', deleteImageHandler);
+
+    fileInput.addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+
+      // Get current number of images
+      const currentImages = grid.querySelectorAll('img').length;
+      const remainingSlots = MAX_IMAGES - currentImages;
+
+      if (remainingSlots <= 0) {
+        alert('Maximum image limit reached! You can only store up to 50 images.');
+        e.target.value = null;
+        return;
+      }
+
+      // Limit the files to process based on remaining slots
+      const filesToProcess = files.slice(0, remainingSlots);
+      
+      if (files.length > remainingSlots) {
+        alert(`You can only upload ${remainingSlots} more image(s). The limit is 50 images.`);
+      }
+
+      // Helper function to read a single file
+      const readFile = (file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = (e) => {
+            console.error('Error reading file:', e);
+            resolve(null);
+          };
+          reader.readAsDataURL(file);
+        });
+      };
+
+      // Process all files and create img elements
+      for (const file of filesToProcess) {
+        try {
+          const dataUrl = await readFile(file);
+          if (!dataUrl) continue;
+          
+          addImageToGrid(dataUrl, true);
+        } catch (err) {
+          console.error('Error processing file:', file.name, err);
+        }
+      }
+
+      // Save to localStorage after upload
+      saveImagesToLocalStore();
+      
+      // clear input
+      e.target.value = null;
+    });
+    
+    // Restore previously saved images on page load
+    restorePermanentImages();
+  })();
+  </script>
+  
+  <!-- Popup Functions -->
+  <script>
+    function showBirthdayPopup() {
+      document.getElementById('birthday-popup').style.display = 'flex';
+    }
+    
+    function showSpecialMessage() {
+      document.getElementById('birthday-popup').style.display = 'none';
+      document.getElementById('special-popup').style.display = 'flex';
+    }
+    
+    function showNoPopup() {
+      document.getElementById('no-popup').style.display = 'flex';
+    }
+    
+    function closeNoPopup() {
+      document.getElementById('no-popup').style.display = 'none';
+    }
+    
+    // Close popups when clicking outside
+    document.getElementById('birthday-popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+    
+    document.getElementById('special-popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+    
+    document.getElementById('no-popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

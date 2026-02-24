@@ -1,0 +1,266 @@
+/* Basic reset and typography */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.4;color:#f4f7fb;overflow-x:hidden}
+
+/* Animated gradient background */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-3;
+  background:linear-gradient(120deg,#0f172a 0%,#0b1220 50%,#05223a 100%);
+}
+
+.hero{min-height:62vh;display:flex;align-items:center;justify-content:center;position:relative;padding:6rem 1.25rem;overflow:hidden}
+.hero-inner{max-width:980px;text-align:center;z-index:2}
+.title{font-size:clamp(1.6rem,4.8vw,3.6rem);letter-spacing:-0.02em;margin-bottom:.5rem}
+.subtitle{color:rgba(255,255,255,.85);margin-bottom:1.25rem;font-size:1.05rem}
+
+/* Gradient animation layer */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(1200px 600px at 10% 20%,rgba(99,102,241,.12),transparent 10%),
+             radial-gradient(800px 400px at 90% 80%,rgba(16,185,129,.08),transparent 10%);
+  animation:bgShift 12s linear infinite alternate;
+}
+
+@keyframes bgShift{
+  from{transform:translateY(0) scale(1)}
+  to{transform:translateY(-30px) scale(1.02)}
+}
+
+/* Floating decorative shapes */
+.bg-shapes{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.shape{position:absolute;display:block;border-radius:50%;filter:blur(24px);opacity:.9}
+.s1{width:260px;height:260px;left:-6%;top:8%;background:linear-gradient(45deg,#7c3aed,#06b6d4);animation:float1 8s ease-in-out infinite}
+.s2{width:160px;height:160px;right:-4%;top:30%;background:linear-gradient(45deg,#ef4444,#f97316);animation:float2 10s ease-in-out infinite}
+.s3{width:200px;height:200px;left:20%;bottom:-6%;background:linear-gradient(45deg,#10b981,#3b82f6);animation:float3 9s ease-in-out infinite}
+.s4{width:120px;height:120px;right:18%;bottom:8%;background:linear-gradient(45deg,#f472b6,#60a5fa);animation:float4 7s ease-in-out infinite}
+
+@keyframes float1{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-28px) rotate(8deg)}100%{transform:translateY(0) rotate(0)}}
+@keyframes float2{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(-6deg)}100%{transform:translateY(0) rotate(0)}}
+@keyframes float3{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-24px) rotate(4deg)}100%{transform:translateY(0) rotate(0)}}
+@keyframes float4{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(-10deg)}100%{transform:translateY(0) rotate(0)}}
+
+/* Cards section */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;padding:3rem 1.25rem;max-width:1100px;margin:0 auto}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);padding:1.25rem;border-radius:12px;backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(2,6,23,.5);animation:cardIn .7s ease both}
+.card h2{color:#e6eefc;margin-bottom:.5rem}
+
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Button */
+.btn{display:inline-block;padding:.65rem 1.05rem;border-radius:10px;background:linear-gradient(90deg,#60a5fa,#7c3aed);color:white;text-decoration:none;font-weight:600;box-shadow:0 8px 30px rgba(99,102,241,.12);transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(99,102,241,.18)}
+
+/* Footer */
+.footer{padding:2rem 1.25rem;text-align:center;color:rgba(255,255,255,.6)}
+
+/* Responsive tweaks */
+@media (max-width:640px){.hero{padding:4rem 1rem}.subtitle{font-size:.98rem}.cards{padding:2rem 1rem}}
+
+/* Birthday overlay */
+.birthday-wrap{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.birthday-banner{background:transparent;color:#fff;padding:0;margin:0;text-align:center;z-index:46;min-width:auto;font-family:'Dancing Script',cursive;box-shadow:none;border:none}
+.birthday-banner h2{font-size:3.2rem;margin:0;font-family:'Great Vibes',cursive;text-shadow:0 6px 22px rgba(0,0,0,.6);letter-spacing:0.02em}
+.birthday-sub{color:rgba(255,255,255,.95);margin-top:.4rem;margin-bottom:0;font-size:1.05rem}
+.close-btn{display:none}
+
+/* Balloons */
+.balloons{position:absolute;inset:0;z-index:45;pointer-events:none}
+.balloon{position:absolute;width:80px;height:100px;border-radius:60% 60% 50% 50%;opacity:.95;transform-origin:center bottom}
+.b1{left:10%;bottom:-120px;background:radial-gradient(circle at 30% 20%,#fff8,#f97316);animation:rise1 6s ease-in infinite}
+.b2{left:28%;bottom:-140px;background:radial-gradient(circle at 30% 20%,#fff8,#60a5fa);animation:rise2 6.8s ease-in infinite}
+.b3{left:60%;bottom:-130px;background:radial-gradient(circle at 30% 20%,#fff8,#34d399);animation:rise3 7s ease-in infinite}
+.b4{left:78%;bottom:-150px;background:radial-gradient(circle at 30% 20%,#fff8,#a78bfa);animation:rise4 6.4s ease-in infinite}
+.balloon::after{content:"";position:absolute;left:50%;bottom:-18px;width:2px;height:40px;background:rgba(0,0,0,.12);transform:translateX(-50%)}
+
+@keyframes rise1{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-40vh) rotate(6deg)}100%{transform:translateY(-80vh) rotate(-4deg);opacity:0}}
+@keyframes rise2{0%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(-36vh) rotate(-8deg)}100%{transform:translateY(-82vh) rotate(0);opacity:0}}
+@keyframes rise3{0%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-38vh) rotate(8deg)}100%{transform:translateY(-84vh) rotate(2);opacity:0}}
+@keyframes rise4{0%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-34vh) rotate(-6deg)}100%{transform:translateY(-78vh) rotate(4);opacity:0}}
+
+/* Confetti */
+.confetti{position:absolute;inset:0;z-index:44;pointer-events:none}
+.conf{position:absolute;width:10px;height:16px;opacity:0.95;border-radius:2px}
+.c1{left:12%;top:30%;background:#ef4444;animation:confetti 1.8s linear infinite 0s}
+.c2{left:22%;top:38%;background:#f97316;animation:confetti 1.9s linear infinite .12s}
+.c3{left:32%;top:26%;background:#fbbf24;animation:confetti 2s linear infinite .2s}
+.c4{left:42%;top:34%;background:#10b981;animation:confetti 1.7s linear infinite .05s}
+.c5{left:52%;top:28%;background:#60a5fa;animation:confetti 1.9s linear infinite .16s}
+.c6{left:62%;top:36%;background:#7c3aed;animation:confetti 1.75s linear infinite .08s}
+.c7{left:72%;top:22%;background:#ec4899;animation:confetti 1.85s linear infinite .22s}
+.c8{left:82%;top:30%;background:#38bdf8;animation:confetti 2.05s linear infinite .28s}
+.c9{left:92%;top:26%;background:#f97316;animation:confetti 1.95s linear infinite .14s}
+
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(540deg);opacity:0}}
+
+/* Slideshow styles */
+.slideshow-wrap{max-width:920px;margin:2.5rem auto;padding:0 1.25rem;text-align:center}
+.slideshow-controls{display:flex;gap:.5rem;justify-content:center;align-items:center;margin-bottom:1rem}
+.file-btn{position:relative;overflow:hidden}
+.file-btn input[type=file]{position:absolute;left:0;top:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.slideshow{position:relative;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:1rem;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,.45)}
+.slideshow img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:10px}
+.caption{color:rgba(255,255,255,.9);margin-top:.6rem;font-size:.95rem}
+.slideshow-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 0.5rem}
+.nav{background:rgba(0,0,0,0.28);border:0;color:#fff;font-size:1.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer}
+
+/* Car marquee (seamless) */
+.car-marquee{padding:1rem 0;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);overflow:hidden}
+.marquee{width:100%;overflow:hidden}
+.marquee-track{display:flex;width:max-content;gap:16px;align-items:center;/* duration controls how long one full set takes */--marquee-speed:20s;animation:marquee-scroll linear infinite var(--marquee-speed);will-change:transform}
+.marquee-track img{flex:0 0 320px;height:200px;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.35);display:block;background:#111}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* pause on hover (optional) */
+.car-marquee:hover .marquee-track{animation-play-state:paused}
+@media (max-width:700px){.marquee-track img{flex:0 0 220px;height:140px}}
+
+/* Styles for user-uploaded seamless marquee */
+.seamless-marquee{overflow:hidden}
+.marquee-viewport{overflow:hidden}
+.marquee-track{display:flex;width:max-content;gap:12px;align-items:center;white-space:nowrap;will-change:transform}
+.marquee-track img{display:block;flex:0 0 auto;height:160px;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.35);background:#111}
+
+/* Keyframe uses CSS variable --scroll-distance (px) for exact pixel translation */
+@keyframes seamless-scroll{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--scroll-distance)))}}
+
+/* Default speed will be set from JS by computing duration = distance/speedPxPerSec */
+.marquee-track[data-playing="true"]{animation-timing-function:linear;animation-iteration-count:infinite}
+
+@media (max-width:700px){.marquee-track img{height:120px}}
+
+/* Memories grid */
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+}
+.memories-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.memories-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Image modal */
+#image-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+#modal-img {
+  max-width: 90%;
+  max-height: 90%;
+}
+#close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Question Container */
+.question-container {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.question-container h2 {
+  color: #e6eefc;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Dancing Script', cursive;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.question-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* Custom Popups */
+.custom-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popup-content {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  max-width: 90%;
+  animation: popupSlide 0.4s ease;
+}
+
+@keyframes popupSlide {
+  from { 
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.popup-content h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Dancing Script', cursive;
+  line-height: 1.4;
+}
+
+.popup-content .btn {
+  margin-top: 0.5rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.2rem;
+}
+
