@@ -3,393 +3,240 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday Amina! 🎂</title>
+  <title>Welcome!</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Music Toggle Button -->
-  <button id="music-toggle" class="music-btn" onclick="toggleMusic()">🎵</button>
+  <!-- Hidden Birthday Content (shown only after making a wish) -->
+  <div id="birthday-content" style="display: none;">
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="music-btn" onclick="toggleMusic()">🎵</button>
 
-  <!-- Hidden Audio Element -->
-  <audio id="birthday-audio" loop>
-    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-  </audio>
+    <!-- Hidden Audio Element -->
+    <audio id="birthday-audio" loop>
+      <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    </audio>
 
-  <!-- Sparkle Container -->
-  <div id="sparkles-container"></div>
+    <!-- Sparkle Container -->
+    <div id="sparkles-container"></div>
 
-  <!-- Balloons -->
-  <div class="balloons" aria-hidden="true">
-    <div class="balloon b1"></div>
-    <div class="balloon b2"></div>
-    <div class="balloon b3"></div>
-    <div class="balloon b4"></div>
-    <div class="balloon b5"></div>
-  </div>
+    <!-- Balloons -->
+    <div class="balloons" aria-hidden="true">
+      <div class="balloon b1"></div>
+      <div class="balloon b2"></div>
+      <div class="balloon b3"></div>
+      <div class="balloon b4"></div>
+      <div class="balloon b5"></div>
+    </div>
 
-  <!-- Confetti -->
-  <div class="confetti" aria-hidden="true">
-    <div class="conf c1"></div>
-    <div class="conf c2"></div>
-    <div class="conf c3"></div>
-    <div class="conf c4"></div>
-    <div class="conf c5"></div>
-    <div class="conf c6"></div>
-    <div class="conf c7"></div>
-    <div class="conf c8"></div>
-    <div class="conf c9"></div>
-    <div class="conf c10"></div>
-    <div class="conf c11"></div>
-    <div class="conf c12"></div>
-  </div>
+    <!-- Confetti -->
+    <div class="confetti" aria-hidden="true">
+      <div class="conf c1"></div>
+      <div class="conf c2"></div>
+      <div class="conf c3"></div>
+      <div class="conf c4"></div>
+      <div class="conf c5"></div>
+      <div class="conf c6"></div>
+      <div class="conf c7"></div>
+      <div class="conf c8"></div>
+      <div class="conf c9"></div>
+      <div class="conf c10"></div>
+      <div class="conf c11"></div>
+      <div class="conf c12"></div>
+    </div>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <h1 class="title">Happy Birthday Amina! 🎉</h1>
-      <p class="subtitle">Specially made with love for you! 💕</p>
-      
-      <!-- Countdown Timer -->
-      <div class="countdown-container">
-        <div class="countdown-box">
-          <span id="days">00</span>
-          <span class="countdown-label">Days</span>
-        </div>
-        <div class="countdown-box">
-          <span id="hours">00</span>
-          <span class="countdown-label">Hours</span>
-        </div>
-        <div class="countdown-box">
-          <span id="minutes">00</span>
-          <span class="countdown-label">Minutes</span>
-        </div>
-        <div class="countdown-box">
-          <span id="seconds">00</span>
-          <span class="countdown-label">Seconds</span>
-        </div>
-      </div>
-      
-      <!-- Cake with Candle -->
-      <div class="cake-container" onclick="blowCandle()">
-        <div class="cake">
-          <div class="cake-bottom"></div>
-          <div class="cake-middle"></div>
-          <div class="cake-top"></div>
-          <div class="candle" id="candle">
-            <div class="flame" id="flame"></div>
+    <header class="hero">
+      <div class="hero-inner">
+        <h1 class="title">Happy Birthday Amina! 🎉</h1>
+        <p class="subtitle">Specially made with love for you! 💕</p>
+        
+        <!-- Cake with Candle -->
+        <div class="cake-container" onclick="blowCandle()">
+          <div class="cake">
+            <div class="cake-bottom"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-top"></div>
+            <div class="candle" id="candle">
+              <div class="flame" id="flame"></div>
+            </div>
           </div>
+          <p class="cake-hint">Click the cake to blow out the candle! 🕯️</p>
         </div>
-        <p class="cake-hint">Click the cake to blow out the candle! 🕯️</p>
-      </div>
-      
-      <!-- Interactive Birthday Question -->
-      <div class="question-container" id="question-container">
-        <h2>Can I ask you something?</h2>
-        <div class="button-group">
-          <button class="btn question-btn" onclick="showBirthdayPopup()">Yes</button>
-          <button class="btn question-btn" onclick="showNoPopup()">No</button>
-        </div>
-      </div>
-
-      <!-- First Popup: Birthday Message -->
-      <div id="birthday-popup" class="custom-popup">
-        <div class="popup-content">
-          <h2>🎂 Today is someone's special birthday! 🎂</h2>
-          <button class="btn" onclick="showSpecialMessage()">Ohh</button>
-        </div>
-      </div>
-
-      <!-- Second Popup: Special Message -->
-      <div id="special-popup" class="custom-popup">
-        <div class="popup-content">
-          <h2>My special one is you, kutti! Happiest birthday jaanu! 🥳💕</h2>
+        
+        <!-- Birthday Message (after candle is blown) -->
+        <div id="birthday-reveal" style="display: none;">
+          <h2 class="birthday-reveal-text">🎂 My special one is you, kutti! Happiest birthday jaanu! 🥳💕 🎂</h2>
           <p class="heart-message">Made with all my love ❤️</p>
         </div>
       </div>
+      <div class="bg-shapes" aria-hidden="true">
+        <span class="shape s1"></span>
+        <span class="shape s2"></span>
+        <span class="shape s3"></span>
+        <span class="shape s4"></span>
+      </div>
+    </header>
 
-      <!-- No Popup -->
-      <div id="no-popup" class="custom-popup">
-        <div class="popup-content">
-          <h2>You have to listen, you don't have any other options! 😄</h2>
-          <button class="btn" onclick="closeNoPopup()">OK</button>
+    <!-- Birthday Wishes Section -->
+    <section class="wishes-section">
+      <h2 class="wishes-title">💌 Birthday Wishes</h2>
+      <div class="wishes-grid" id="wishes-grid">
+        <div class="wish-card">
+          <p class="wish-text">May all your dreams come true! 🌟</p>
+          <span class="wish-from">- From Your Secret Admirer</span>
+        </div>
+        <div class="wish-card">
+          <p class="wish-text">Stay beautiful, stay happy! ✨</p>
+          <span class="wish-from">- Someone Who Loves You</span>
+        </div>
+        <div class="wish-card">
+          <p class="wish-text">You deserve the best birthday ever! 🎁</p>
+          <span class="wish-from">- Your Biggest Fan</span>
         </div>
       </div>
-    </div>
-    <div class="bg-shapes" aria-hidden="true">
-      <span class="shape s1"></span>
-      <span class="shape s2"></span>
-      <span class="shape s3"></span>
-      <span class="shape s4"></span>
-    </div>
-  </header>
+      <button class="btn add-wish-btn" onclick="showAddWishPopup()">Add Your Wish 💝</button>
+    </section>
 
-  <!-- Birthday Wishes Section -->
-  <section class="wishes-section">
-    <h2 class="wishes-title">💌 Birthday Wishes</h2>
-    <div class="wishes-grid" id="wishes-grid">
-      <div class="wish-card">
-        <p class="wish-text">May all your dreams come true! 🌟</p>
-        <span class="wish-from">- From Your Secret Admirer</span>
-      </div>
-      <div class="wish-card">
-        <p class="wish-text">Stay beautiful, stay happy! ✨</p>
-        <span class="wish-from">- Someone Who Loves You</span>
-      </div>
-      <div class="wish-card">
-        <p class="wish-text">You deserve the best birthday ever! 🎁</p>
-        <span class="wish-from">- Your Biggest Fan</span>
+    <!-- Add Wish Popup -->
+    <div id="add-wish-popup" class="custom-popup">
+      <div class="popup-content">
+        <h2>Write Your Wish 💕</h2>
+        <textarea id="wish-input" class="wish-input" placeholder="Type your wish here..."></textarea>
+        <input type="text" id="wish-from-input" class="wish-from-input" placeholder="From:">
+        <button class="btn" onclick="addWish()">Submit Wish</button>
+        <button class="btn close-btn" onclick="closeAddWishPopup()">Cancel</button>
       </div>
     </div>
-    <button class="btn add-wish-btn" onclick="showAddWishPopup()">Add Your Wish 💝</button>
-  </section>
 
-  <!-- Add Wish Popup -->
-  <div id="add-wish-popup" class="custom-popup">
-    <div class="popup-content">
-      <h2>Write Your Wish 💕</h2>
-      <textarea id="wish-input" class="wish-input" placeholder="Type your wish here..."></textarea>
-      <input type="text" id="wish-from-input" class="wish-from-input" placeholder="From:">
-      <button class="btn" onclick="addWish()">Submit Wish</button>
-      <button class="btn close-btn" onclick="closeAddWishPopup()">Cancel</button>
+    <!-- User-uploaded memories grid -->
+    <section class="user-section" style="max-width:1100px;margin:2rem auto;padding:0 1.25rem;">
+      <input id="user-files" type="file" accept="image/*" multiple style="display: none;">
+      <button class="btn file-btn" onclick="document.getElementById('user-files').click()">Upload Memories 📸</button>
+
+      <div class="memories-grid" id="memories-grid"></div>
+    </section>
+
+    <!-- Image modal -->
+    <div id="image-modal">
+      <img id="modal-img" alt="Full view">
+      <button id="close-modal">Close</button>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <section class="fun-facts-section">
+      <h2 class="fun-facts-title">🎯 Fun Facts About You!</h2>
+      <div class="fun-facts-grid">
+        <div class="fun-fact-card">
+          <span class="fact-icon">🌟</span>
+          <p class="fact-text">You light up every room you walk into!</p>
+        </div>
+        <div class="fun-fact-card">
+          <span class="fact-icon">💖</span>
+          <p class="fact-text">Your smile is contagious!</p>
+        </div>
+        <div class="fun-fact-card">
+          <span class="fact-icon">🦋</span>
+          <p class="fact-text">You make the world more beautiful!</p>
+        </div>
+        <div class="fun-fact-card">
+          <span class="fact-icon">🎵</span>
+          <p class="fact-text">You make amazing memories wherever you go!</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>Made with 💕 for Amina • Happy Birthday! 🎂</small>
+    </footer>
+  </div>
+
+  <!-- Initial Question Screen (visible first) -->
+  <div id="question-screen" class="question-screen">
+    <div class="question-container">
+      <h2>Can I ask you something?</h2>
+      <div class="button-group">
+        <button class="btn question-btn" onclick="showBirthdayPopup()">Yes</button>
+        <button class="btn question-btn" onclick="showNoPopup()">No</button>
+      </div>
     </div>
   </div>
 
-  <!-- User-uploaded memories grid -->
-  <section class="user-section" style="max-width:1100px;margin:2rem auto;padding:0 1.25rem;">
-    <input id="user-files" type="file" accept="image/*" multiple style="display: none;">
-    <button class="btn file-btn" onclick="document.getElementById('user-files').click()">Upload Memories 📸</button>
+  <!-- First Popup: Birthday Message -->
+  <div id="birthday-popup" class="custom-popup" style="display: none;">
+    <div class="popup-content">
+      <h2>🎂 Today is someone's special birthday! 🎂</h2>
+      <button class="btn" onclick="showSpecialMessage()">Ohh</button>
+    </div>
+  </div>
 
-    <div class="memories-grid" id="memories-grid"></div>
-  </section>
+  <!-- Second Popup: Special Message with Make a Wish -->
+  <div id="special-popup" class="custom-popup" style="display: none;">
+    <div class="popup-content">
+      <h2>My special one is you, kutti! Happiest birthday jaanu! 🥳💕</h2>
+      <p class="heart-message">Made with all my love ❤️</p>
+      <button class="btn make-wish-btn" onclick="makeAWish()">✨ Make a Wish ✨</button>
+    </div>
+  </div>
 
-  <!-- Image modal -->
-  <div id="image-modal">
+  <!-- No Popup -->
+  <div id="no-popup" class="custom-popup" style="display: none;">
+    <div class="popup-content">
+      <h2>You have to listen, you don't have any other options! 😄</h2>
+      <button class="btn" onclick="closeNoPopup()">OK</button>
+    </div>
+  </div>
+
+  <!-- Image modal for memories -->
+  <div id="image-modal" style="display: none;">
     <img id="modal-img" alt="Full view">
     <button id="close-modal">Close</button>
   </div>
 
-  <!-- Fun Facts Section -->
-  <section class="fun-facts-section">
-    <h2 class="fun-facts-title">🎯 Fun Facts About You!</h2>
-    <div class="fun-facts-grid">
-      <div class="fun-fact-card">
-        <span class="fact-icon">🌟</span>
-        <p class="fact-text">You light up every room you walk into!</p>
-      </div>
-      <div class="fun-fact-card">
-        <span class="fact-icon">💖</span>
-        <p class="fact-text">Your smile is contagious!</p>
-      </div>
-      <div class="fun-fact-card">
-        <span class="fact-icon">🦋</span>
-        <p class="fact-text">You make the world more beautiful!</p>
-      </div>
-      <div class="fun-fact-card">
-        <span class="fact-icon">🎵</span>
-        <p class="fact-text">You make amazing memories wherever you go!</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <small>Made with 💕 for Amina • Happy Birthday! 🎂</small>
-  </footer>
   <script>
-  (function(){
-    const MAX_IMAGES = 50;
-    const STORAGE_KEY = 'permanent_images';
+    // Global state
+    let musicStarted = false;
     
-    // Get DOM elements
-    const grid = document.getElementById('memories-grid');
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img');
-    const fileInput = document.getElementById('user-files');
-    const closeModal = document.getElementById('close-modal');
-    
-    // Load saved images from localStorage on page load
-    function loadSavedImages() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch(e) {
-        console.error('Error loading saved images:', e);
-        return [];
-      }
-    }
-
-    // Save all current grid images to localStorage permanently  
-    function saveImagesToLocalStore() {
-      try {
-        const imgElements = grid.querySelectorAll('.permanent-img') || [];
-        const srcArray = Array.from(imgElements).map(img => img.src);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(srcArray));
-        console.log(`Saved ${srcArray.length} images permanently`);
-      } catch(e) {
-        console.error("Error saving images to localstore:", e);
-      }
-    }
-    
-    // Restore previously saved permanent images
-    function restorePermanentImages() {
-      try {
-        const saved = loadSavedImages();
-        if (saved.length === 0) return;
-        for (const srcOfSaved of saved) {
-          addImageToGrid(srcOfSaved, true);
-        }
-        console.log(`Restored ${saved.length} permanent images`);
-      } catch(e) {
-        console.error("Error restoring permanent images:", e);
-      }
-    }
-    
-    // Add single Image element
-    function addImageToGrid(srcUrl, isPermanent) {
-      const img = document.createElement("img");
-      img.src = srcUrl;
-      if (isPermanent) {
-        img.className = "permanent-img";
-      }
-      img.style.opacity = "0";
-      grid.appendChild(img);
-      setTimeout(() => {
-        img.style.opacity = "1";
-      }, 100);
-      
-      // Add click listener for modal
-      img.addEventListener('click', () => {
-        modalImg.src = img.src;
-        modal.style.display = 'flex';
-      });
-    }
-    
-    // Delete button handler
-    function showDeleteButtons() {
-      document.querySelectorAll(".delete-btn").forEach(btn => btn.remove());
-      document.querySelectorAll("#memories-grid > .permanent-img").forEach((imgs, i) => {
-        const delBtn = document.createElement("button");
-        delBtn.innerText = "X";
-        delBtn.className = "delete-btn";
-        delBtn.title = "Delete Image";
-        Object.assign(delBtn.style, {
-          position: "absolute",
-          top: "5px",
-          right: "5px",
-          background: "red",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer"
-        });
-        if (imgs.parentNode) {
-          imgs.parentNode.appendChild(delBtn);
-        }
-      });
-    }
-
-    // Delete button event listener
-    function deleteImageHandler(event) {
-      if (!event.target.classList.contains("delete-btn")) return;
-      
-      // Get the image element (delete button is sibling of image)
-      const imgElement = event.target.previousElementSibling;
-      if (imgElement) {
-        imgElement.remove();
-      }
-      event.target.remove();
-      
-      // Save updated list to localStorage
-      saveImagesToLocalStore();
-    }
-    
-    // Set up event listeners
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    // Close modal on click outside image
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-    
-    // Listen for delete button clicks (using delegation)
-    grid.addEventListener('click', deleteImageHandler);
-
-    fileInput.addEventListener('change', async (e) => {
-      const files = Array.from(e.target.files || []);
-      if (!files.length) return;
-
-      // Get current number of images
-      const currentImages = grid.querySelectorAll('img').length;
-      const remainingSlots = MAX_IMAGES - currentImages;
-
-      if (remainingSlots <= 0) {
-        alert('Maximum image limit reached! You can only store up to 50 images.');
-        e.target.value = null;
-        return;
-      }
-
-      // Limit the files to process based on remaining slots
-      const filesToProcess = files.slice(0, remainingSlots);
-      
-      if (files.length > remainingSlots) {
-        alert(`You can only upload ${remainingSlots} more image(s). The limit is 50 images.`);
-      }
-
-      // Helper function to read a single file
-      const readFile = (file) => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = (e) => resolve(e.target.result);
-          reader.onerror = (e) => {
-            console.error('Error reading file:', e);
-            resolve(null);
-          };
-          reader.readAsDataURL(file);
-        });
-      };
-
-      // Process all files and create img elements
-      for (const file of filesToProcess) {
-        try {
-          const dataUrl = await readFile(file);
-          if (!dataUrl) continue;
-          
-          addImageToGrid(dataUrl, true);
-        } catch (err) {
-          console.error('Error processing file:', file.name, err);
-        }
-      }
-
-      // Save to localStorage after upload
-      saveImagesToLocalStore();
-      
-      // clear input
-      e.target.value = null;
-    });
-    
-    // Restore previously saved images on page load
-    restorePermanentImages();
-  })();
-  </script>
-  
-  <!-- Popup Functions -->
-  <script>
+    // Show first popup when Yes is clicked
     function showBirthdayPopup() {
       document.getElementById('birthday-popup').style.display = 'flex';
     }
     
+    // Show special message popup
     function showSpecialMessage() {
       document.getElementById('birthday-popup').style.display = 'none';
       document.getElementById('special-popup').style.display = 'flex';
     }
     
+    // Show no popup
     function showNoPopup() {
       document.getElementById('no-popup').style.display = 'flex';
     }
     
+    // Close no popup
     function closeNoPopup() {
       document.getElementById('no-popup').style.display = 'none';
+    }
+    
+    // Make a wish - reveal the full birthday site!
+    function makeAWish() {
+      // Hide all popups
+      document.getElementById('special-popup').style.display = 'none';
+      document.getElementById('question-screen').style.display = 'none';
+      
+      // Show birthday content
+      const birthdayContent = document.getElementById('birthday-content');
+      birthdayContent.style.display = 'block';
+      
+      // Start music automatically
+      startMusic();
+      
+      // Start sparkle effects
+      startSparkles();
+      
+      // Show birthday reveal message after a short delay
+      setTimeout(() => {
+        document.getElementById('birthday-reveal').style.display = 'block';
+      }, 1500);
     }
     
     // Close popups when clicking outside
@@ -419,46 +266,42 @@
     });
   </script>
 
-  <!-- Additional Interactive Features -->
+  <!-- Birthday Content Scripts (only run after wish is made) -->
   <script>
     // Music Toggle
-    let isMusicPlaying = false;
-    function toggleMusic() {
+    function startMusic() {
+      if (musicStarted) return;
+      musicStarted = true;
+      
       const audio = document.getElementById('birthday-audio');
       const btn = document.getElementById('music-toggle');
-      if (isMusicPlaying) {
-        audio.pause();
-        btn.textContent = '🎵';
-        btn.style.background = 'rgba(255,255,255,0.2)';
-      } else {
-        audio.play().catch(e => console.log('Audio play failed:', e));
+      
+      // Auto-play music
+      audio.play().catch(e => {
+        console.log('Audio autoplay blocked, showing button');
+        btn.style.display = 'block';
+      });
+      
+      if (btn) {
         btn.textContent = '🔊';
         btn.style.background = 'rgba(255,105,180,0.6)';
       }
-      isMusicPlaying = !isMusicPlaying;
     }
-
-    // Countdown Timer
-    function updateCountdown() {
-      const now = new Date();
-      const nextBirthday = new Date(now.getFullYear(), 0, 1); // January 1st
-      if (now > nextBirthday) {
-        nextBirthday.setFullYear(now.getFullYear() + 1);
+    
+    function toggleMusic() {
+      const audio = document.getElementById('birthday-audio');
+      const btn = document.getElementById('music-toggle');
+      
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '🔊';
+        btn.style.background = 'rgba(255,105,180,0.6)';
+      } else {
+        audio.pause();
+        btn.textContent = '🎵';
+        btn.style.background = 'rgba(255,255,255,0.2)';
       }
-      
-      const diff = nextBirthday - now;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      document.getElementById('days').textContent = String(days).padStart(2, '0');
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
 
     // Candle Blowing
     let candleBlown = false;
@@ -469,25 +312,28 @@
       flame.style.animation = 'extinguish 0.5s forwards';
       setTimeout(() => {
         flame.style.display = 'none';
-        showSpecialMessage();
       }, 500);
     }
 
     // Sparkle Effect
-    function createSparkle() {
+    function startSparkles() {
       const container = document.getElementById('sparkles-container');
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = Math.random() * 100 + 'vw';
-      sparkle.style.top = Math.random() * 100 + 'vh';
-      sparkle.innerHTML = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
-      sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
-      sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
-      container.appendChild(sparkle);
+      if (!container) return;
       
-      setTimeout(() => sparkle.remove(), 3000);
+      function createSparkle() {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.innerHTML = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+        sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+        container.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 3000);
+      }
+      setInterval(createSparkle, 300);
     }
-    setInterval(createSparkle, 300);
 
     // Wish Functions
     function showAddWishPopup() {
@@ -531,6 +377,8 @@
     function loadWishes() {
       const wishes = JSON.parse(localStorage.getItem('birthday_wishes') || '[]');
       const wishesGrid = document.getElementById('wishes-grid');
+      if (!wishesGrid) return;
+      
       wishes.forEach(wish => {
         const wishCard = document.createElement('div');
         wishCard.className = 'wish-card';
@@ -543,6 +391,136 @@
     }
     loadWishes();
 
+    // Image upload functionality
+    (function(){
+      const MAX_IMAGES = 50;
+      const STORAGE_KEY = 'permanent_images';
+      
+      const grid = document.getElementById('memories-grid');
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const fileInput = document.getElementById('user-files');
+      const closeModal = document.getElementById('close-modal');
+      
+      if (!grid || !fileInput) return;
+      
+      function loadSavedImages() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch(e) {
+          return [];
+        }
+      }
+
+      function saveImagesToLocalStore() {
+        try {
+          const imgElements = grid.querySelectorAll('.permanent-img') || [];
+          const srcArray = Array.from(imgElements).map(img => img.src);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(srcArray));
+        } catch(e) {
+          console.error("Error saving images:", e);
+        }
+      }
+      
+      function restorePermanentImages() {
+        try {
+          const saved = loadSavedImages();
+          if (saved.length === 0) return;
+          for (const srcOfSaved of saved) {
+            addImageToGrid(srcOfSaved, true);
+          }
+        } catch(e) {
+          console.error("Error restoring images:", e);
+        }
+      }
+      
+      function addImageToGrid(srcUrl, isPermanent) {
+        const img = document.createElement("img");
+        img.src = srcUrl;
+        if (isPermanent) {
+          img.className = "permanent-img";
+        }
+        img.style.opacity = "0";
+        grid.appendChild(img);
+        setTimeout(() => {
+          img.style.opacity = "1";
+        }, 100);
+        
+        img.addEventListener('click', () => {
+          modalImg.src = img.src;
+          modal.style.display = 'flex';
+        });
+      }
+      
+      function deleteImageHandler(event) {
+        if (!event.target.classList.contains("delete-btn")) return;
+        
+        const imgElement = event.target.previousElementSibling;
+        if (imgElement) {
+          imgElement.remove();
+        }
+        event.target.remove();
+        
+        saveImagesToLocalStore();
+      }
+      
+      closeModal?.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+      
+      grid.addEventListener('click', deleteImageHandler);
+
+      fileInput.addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files || []);
+        if (!files.length) return;
+
+        const currentImages = grid.querySelectorAll('img').length;
+        const remainingSlots = MAX_IMAGES - currentImages;
+
+        if (remainingSlots <= 0) {
+          alert('Maximum image limit reached! You can only store up to 50 images.');
+          e.target.value = null;
+          return;
+        }
+
+        const filesToProcess = files.slice(0, remainingSlots);
+        
+        if (files.length > remainingSlots) {
+          alert(`You can only upload ${remainingSlots} more image(s).`);
+        }
+
+        const readFile = (file) => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(file);
+          });
+        };
+
+        for (const file of filesToProcess) {
+          try {
+            const dataUrl = await readFile(file);
+            if (!dataUrl) continue;
+            addImageToGrid(dataUrl, true);
+          } catch (err) {
+            console.error('Error processing file:', file.name, err);
+          }
+        }
+
+        saveImagesToLocalStore();
+        e.target.value = null;
+      });
+      
+      restorePermanentImages();
+    })();
+
     // Add CSS animation for extinguish
     const style = document.createElement('style');
     style.textContent = `
@@ -553,6 +531,56 @@
       @keyframes wishPopIn {
         0% { opacity: 0; transform: scale(0.5); }
         100% { opacity: 1; transform: scale(1); }
+      }
+      .question-screen {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .question-container {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      }
+      .question-container h2 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+      }
+      .button-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+      .question-btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .question-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      }
+      .make-wish-btn {
+        margin-top: 1.5rem;
+        padding: 1rem 3rem;
+        font-size: 1.3rem;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border: none;
+        border-radius: 50px;
+        color: white;
+        cursor: pointer;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
       }
     `;
     document.head.appendChild(style);
