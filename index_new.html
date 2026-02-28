@@ -91,7 +91,7 @@
           <p class="cake-hint">Click the cake to blow out the candle! 🕯️</p>
         </div>
         
-        <!-- Birthday Message (after candle is blown) -->
+        <!-- Birthday Message (after candle is blown) with typing animation -->
         <div id="birthday-reveal" style="display: none;">
           <h2 class="birthday-reveal-text"></h2>
           <p class="heart-message"></p>
@@ -382,6 +382,10 @@
     // Birth date: March 11, 2004 at 8:45 PM
     const birthDate = new Date('2004-03-11T20:45:00');
     
+    // Messages to type out
+    const wishMessage = "🎂 You are the special one, kutti! Happiest birthday jaanu! 🥳💕 🎂";
+    const loveMessage = "Love you kuttiiii!!!... ❤️";
+    
     // Age Timer Function - Shows how old she is since birth
     function startCountdown() {
       function updateTimer() {
@@ -462,10 +466,6 @@
       }
     }
 
-    // Messages for typing animation
-    const wishMessage = "🎂 You are the special one, kutti! Happiest birthday jaanu! 🥳💕 🎂";
-    const loveMessage = "Love you kuttiiii!!!... ❤️";
-    
     // Typing animation function
     function typeText(element, text, speed = 50, callback) {
       let i = 0;
@@ -481,7 +481,7 @@
       }
       type();
     }
-    
+
     // Candle Blowing - reveals the birthday message with typing animation
     let candleBlown = false;
     function blowCandle() {

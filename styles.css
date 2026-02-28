@@ -41,13 +41,6 @@ body::before{
 @keyframes float3{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-24px) rotate(4deg)}100%{transform:translateY(0) rotate(0)}}
 @keyframes float4{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(-10deg)}100%{transform:translateY(0) rotate(0)}}
 
-/* Cards section */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;padding:3rem 1.25rem;max-width:1100px;margin:0 auto}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);padding:1.25rem;border-radius:12px;backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(2,6,23,.5);animation:cardIn .7s ease both}
-.card h2{color:#e6eefc;margin-bottom:.5rem}
-
-@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
 /* Button */
 .btn{display:inline-block;padding:.65rem 1.05rem;border-radius:10px;background:linear-gradient(90deg,#60a5fa,#7c3aed);color:white;text-decoration:none;font-weight:600;box-shadow:0 8px 30px rgba(99,102,241,.12);transition:transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(99,102,241,.18)}
@@ -56,14 +49,7 @@ body::before{
 .footer{padding:2rem 1.25rem;text-align:center;color:rgba(255,255,255,.6)}
 
 /* Responsive tweaks */
-@media (max-width:640px){.hero{padding:4rem 1rem}.subtitle{font-size:.98rem}.cards{padding:2rem 1rem}}
-
-/* Birthday overlay */
-.birthday-wrap{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.birthday-banner{background:transparent;color:#fff;padding:0;margin:0;text-align:center;z-index:46;min-width:auto;font-family:'Dancing Script',cursive;box-shadow:none;border:none}
-.birthday-banner h2{font-size:3.2rem;margin:0;font-family:'Great Vibes',cursive;text-shadow:0 6px 22px rgba(0,0,0,.6);letter-spacing:0.02em}
-.birthday-sub{color:rgba(255,255,255,.95);margin-top:.4rem;margin-bottom:0;font-size:1.05rem}
-.close-btn{display:none}
+@media (max-width:640px){.hero{padding:4rem 1rem}.subtitle{font-size:.98rem}}
 
 /* Balloons */
 .balloons{position:absolute;inset:0;z-index:45;pointer-events:none}
@@ -79,6 +65,20 @@ body::before{
 @keyframes rise3{0%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-38vh) rotate(8deg)}100%{transform:translateY(-84vh) rotate(2);opacity:0}}
 @keyframes rise4{0%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-34vh) rotate(-6deg)}100%{transform:translateY(-78vh) rotate(4);opacity:0}}
 
+/* Additional Balloon */
+.balloon.b5 {
+  left: 45%;
+  bottom: -160px;
+  background: radial-gradient(circle at 30% 20%, #fff8, #fbbf24);
+  animation: rise5 7.2s ease-in infinite;
+}
+
+@keyframes rise5 {
+  0% { transform: translateY(0) rotate(2deg); }
+  50% { transform: translateY(-42vh) rotate(-4deg); }
+  100% { transform: translateY(-86vh) rotate(6deg); opacity: 0; }
+}
+
 /* Confetti */
 .confetti{position:absolute;inset:0;z-index:44;pointer-events:none}
 .conf{position:absolute;width:10px;height:16px;opacity:0.95;border-radius:2px}
@@ -91,92 +91,11 @@ body::before{
 .c7{left:72%;top:22%;background:#ec4899;animation:confetti 1.85s linear infinite .22s}
 .c8{left:82%;top:30%;background:#38bdf8;animation:confetti 2.05s linear infinite .28s}
 .c9{left:92%;top:26%;background:#f97316;animation:confetti 1.95s linear infinite .14s}
+.c10 { left: 8%; top: 42%; background: #8b5cf6; animation: confetti 2.1s linear infinite 0.3s; }
+.c11 { left: 38%; top: 18%; background: #14b8a6; animation: confetti 1.95s linear infinite 0.18s; }
+.c12 { left: 68%; top: 32%; background: #f43f5e; animation: confetti 2.15s linear infinite 0.25s; }
 
 @keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(540deg);opacity:0}}
-
-/* Slideshow styles */
-.slideshow-wrap{max-width:920px;margin:2.5rem auto;padding:0 1.25rem;text-align:center}
-.slideshow-controls{display:flex;gap:.5rem;justify-content:center;align-items:center;margin-bottom:1rem}
-.file-btn{position:relative;overflow:hidden}
-.file-btn input[type=file]{position:absolute;left:0;top:0;opacity:0;width:100%;height:100%;cursor:pointer}
-.slideshow{position:relative;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:1rem;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,.45)}
-.slideshow img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:10px}
-.caption{color:rgba(255,255,255,.9);margin-top:.6rem;font-size:.95rem}
-.slideshow-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 0.5rem}
-.nav{background:rgba(0,0,0,0.28);border:0;color:#fff;font-size:1.6rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer}
-
-/* Car marquee (seamless) */
-.car-marquee{padding:1rem 0;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);overflow:hidden}
-.marquee{width:100%;overflow:hidden}
-.marquee-track{display:flex;width:max-content;gap:16px;align-items:center;/* duration controls how long one full set takes */--marquee-speed:20s;animation:marquee-scroll linear infinite var(--marquee-speed);will-change:transform}
-.marquee-track img{flex:0 0 320px;height:200px;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.35);display:block;background:#111}
-@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* pause on hover (optional) */
-.car-marquee:hover .marquee-track{animation-play-state:paused}
-@media (max-width:700px){.marquee-track img{flex:0 0 220px;height:140px}}
-
-/* Styles for user-uploaded seamless marquee */
-.seamless-marquee{overflow:hidden}
-.marquee-viewport{overflow:hidden}
-.marquee-track{display:flex;width:max-content;gap:12px;align-items:center;white-space:nowrap;will-change:transform}
-.marquee-track img{display:block;flex:0 0 auto;height:160px;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.35);background:#111}
-
-/* Keyframe uses CSS variable --scroll-distance (px) for exact pixel translation */
-@keyframes seamless-scroll{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--scroll-distance)))}}
-
-/* Default speed will be set from JS by computing duration = distance/speedPxPerSec */
-.marquee-track[data-playing="true"]{animation-timing-function:linear;animation-iteration-count:infinite}
-
-@media (max-width:700px){.marquee-track img{height:120px}}
-
-/* Memories grid */
-.memories-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 0 1.25rem;
-}
-.memories-grid img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.memories-grid img:hover {
-  transform: scale(1.05);
-}
-
-/* Image modal */
-#image-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
-#modal-img {
-  max-width: 90%;
-  max-height: 90%;
-}
-#close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
 
 /* Question Container */
 .question-container {
@@ -193,18 +112,6 @@ body::before{
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-family: 'Dancing Script', cursive;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.question-btn {
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
 }
 
 /* Custom Popups */
@@ -319,136 +226,392 @@ body::before{
   }
 }
 
-/* Additional Balloon */
-.balloon.b5 {
-  left: 45%;
-  bottom: -160px;
-  background: radial-gradient(circle at 30% 20%, #fff8, #fbbf24);
-  animation: rise5 7.2s ease-in infinite;
+/* ============================
+   COUNTDOWN TIMER STYLES
+   ============================ */
+
+.countdown-timer {
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 20px;
+  border: 2px solid rgba(236, 72, 153, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 700px;
 }
 
-@keyframes rise5 {
-  0% { transform: translateY(0) rotate(2deg); }
-  50% { transform: translateY(-42vh) rotate(-4deg); }
-  100% { transform: translateY(-86vh) rotate(6deg); opacity: 0; }
+.timer-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
 }
 
-/* Additional Confetti */
-.conf.c10 { left: 8%; top: 42%; background: #8b5cf6; animation: confetti 2.1s linear infinite 0.3s; }
-.conf.c11 { left: 38%; top: 18%; background: #14b8a6; animation: confetti 1.95s linear infinite 0.18s; }
-.conf.c12 { left: 68%; top: 32%; background: #f43f5e; animation: confetti 2.15s linear infinite 0.25s; }
-
-/* Countdown Timer */
-.countdown-container {
+.timer-grid {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem 0;
+  flex-wrap: wrap;
 }
 
-.countdown-box {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+.timer-box {
+  background: linear-gradient(180deg, rgba(236, 72, 153, 0.3), rgba(236, 72, 153, 0.1));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
   padding: 1rem 1.5rem;
   text-align: center;
-  min-width: 80px;
-  backdrop-filter: blur(10px);
+  min-width: 100px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: timerPulse 2s ease-in-out infinite;
 }
 
-.countdown-box span:first-child {
+.timer-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+}
+
+@keyframes timerPulse {
+  0%, 100% { 
+    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2);
+  }
+  50% { 
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+  }
+}
+
+.timer-number {
   display: block;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #fff;
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
 }
 
-.countdown-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+.timer-label {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-top: 0.25rem;
 }
 
-/* Cake with Candle */
+/* ============================
+   CAKE STYLES
+   ============================ */
+
 .cake-container {
   margin: 2rem auto;
   cursor: pointer;
   display: inline-block;
+  position: relative;
 }
 
 .cake {
   position: relative;
-  width: 200px;
-  height: 150px;
+  width: 220px;
+  height: 180px;
   margin: 0 auto;
 }
 
+/* Cake Plate */
+.cake-plate {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 20px;
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Cake Base/Bottom Layer */
 .cake-bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 55px;
+  background: linear-gradient(180deg, #ec4899, #db2777, #be185d);
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 -8px 15px rgba(0, 0, 0, 0.15),
+    inset 0 8px 15px rgba(255, 255, 255, 0.2),
+    0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+/* Decorative stripes on bottom layer */
+.cake-bottom::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f472b6 0px,
+    #f472b6 12px,
+    #ec4899 12px,
+    #ec4899 24px
+  );
+  border-radius: 4px;
+}
+
+/* Cake Middle Layer */
+.cake-middle {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 165px;
+  height: 45px;
+  background: linear-gradient(180deg, #f9a8d4, #f472b6, #ec4899);
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 -6px 12px rgba(0, 0, 0, 0.1),
+    inset 0 6px 12px rgba(255, 255, 255, 0.25),
+    0 8px 20px rgba(244, 114, 182, 0.25);
+}
+
+/* Decorative dots on middle layer */
+.cake-middle::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 145px;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0px,
+    #fff 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  border-radius: 3px;
+}
+
+/* Cake Top Layer */
+.cake-top {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 40px;
+  background: linear-gradient(180deg, #fbcfe8, #f9a8d4, #f472b6);
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 -5px 10px rgba(0, 0, 0, 0.08),
+    inset 0 5px 10px rgba(255, 255, 255, 0.3),
+    0 6px 15px rgba(249, 168, 212, 0.2);
+}
+
+/* Frosting decoration on top */
+.cake-top::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 12px;
+  background: linear-gradient(180deg, #fff, #fce7f3);
+  border-radius: 6px;
+}
+
+/* Candle */
+.candle {
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 45px;
+  background: linear-gradient(90deg, #fef3c7, #fde68a, #fef3c7);
+  border-radius: 4px;
+  box-shadow: 
+    inset -2px 0 4px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(253, 230, 138, 0.3);
+}
+
+/* Candle stripes */
+.candle::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    180deg,
+    #f472b6 0px,
+    #f472b6 4px,
+    #fff 4px,
+    #fff 8px
+  );
+  border-radius: 2px;
+}
+
+/* Flame with glow effect */
+.flame {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 28px;
+  background: radial-gradient(ellipse at bottom, #fff, #fff8dc 20%, #ffd700 50%, #ff8c00 80%, transparent 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 0.4s ease-in-out infinite alternate;
+  filter: blur(0.5px);
+}
+
+/* Flame glow */
+.flame::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 200, 0, 0.4), transparent 70%);
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.flame::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px;
-  height: 50px;
-  background: linear-gradient(180deg, #f472b6, #ec4899);
-  border-radius: 10px;
-}
-
-.cake-middle {
-  position: absolute;
-  bottom: 45px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 40px;
-  background: linear-gradient(180deg, #f9a8d4, #f472b6);
-  border-radius: 8px;
-}
-
-.cake-top {
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 35px;
-  background: linear-gradient(180deg, #fbcfe8, #f9a8d4);
-  border-radius: 6px;
-}
-
-.candle {
-  position: absolute;
-  bottom: 115px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 40px;
-  background: linear-gradient(180deg, #fef3c7, #fde68a);
-  border-radius: 3px;
-}
-
-.flame {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 20px;
-  background: radial-gradient(ellipse at bottom, #fff8dc, #ffa500, transparent);
+  width: 8px;
+  height: 12px;
+  background: #fff;
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: flicker 0.5s ease-in-out infinite alternate;
 }
 
 @keyframes flicker {
-  0% { transform: translateX(-50%) scale(1); opacity: 1; }
-  100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+  0% { 
+    transform: translateX(-50%) scale(1) rotate(-2deg); 
+    opacity: 1; 
+  }
+  25% { 
+    transform: translateX(-50%) scale(1.05) rotate(1deg); 
+    opacity: 0.95; 
+  }
+  50% { 
+    transform: translateX(-50%) scale(0.98) rotate(-1deg); 
+    opacity: 1; 
+  }
+  75% { 
+    transform: translateX(-50%) scale(1.02) rotate(2deg); 
+    opacity: 0.9; 
+  }
+  100% { 
+    transform: translateX(-50%) scale(1.05) rotate(-1deg); 
+    opacity: 0.85; 
+  }
+}
+
+@keyframes glow {
+  0% { 
+    transform: translateX(-50%) scale(1); 
+    opacity: 0.6; 
+  }
+  100% { 
+    transform: translateX(-50%) scale(1.2); 
+    opacity: 0.8; 
+  }
 }
 
 .cake-hint {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   margin-top: 0.5rem;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Birthday message reveal animation */
+#birthday-reveal {
+  animation: revealMessage 1s ease-out forwards;
+}
+
+@keyframes revealMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.birthday-reveal-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #fff;
+  text-shadow: 
+    0 0 10px rgba(236, 72, 153, 0.5),
+    0 0 20px rgba(236, 72, 153, 0.3),
+    0 0 30px rgba(236, 72, 153, 0.2);
+  animation: pulseText 2s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { 
+    text-shadow: 
+      0 0 10px rgba(236, 72, 153, 0.5),
+      0 0 20px rgba(236, 72, 153, 0.3),
+      0 0 30px rgba(236, 72, 153, 0.2);
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px rgba(236, 72, 153, 0.7),
+      0 0 25px rgba(236, 72, 153, 0.5),
+      0 0 40px rgba(236, 72, 153, 0.3);
+  }
+}
+
+.heart-message {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ============================
+   GREETING CARDS SECTION 
+   ============================ */
+
+/* Section Hint */
+.section-hint {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-family: 'Dancing Script', cursive;
 }
 
 /* Birthday Wishes Section */
@@ -460,10 +623,11 @@ body::before{
 }
 
 .wishes-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: 'Dancing Script', cursive;
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
 }
 
 .wishes-grid {
@@ -473,77 +637,115 @@ body::before{
   margin-bottom: 2rem;
 }
 
-.wish-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.15);
+/* Greeting Card Styles */
+.greeting-card {
+  background-color: transparent;
+  width: 100%;
+  height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.greeting-card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.greeting-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.greeting-card .card-front,
+.greeting-card .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
 }
 
-.wish-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+/* Card Front - Decorative gradient */
+.greeting-card .card-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+  animation: cardFloat 3s ease-in-out infinite;
 }
 
-.wish-text {
-  font-size: 1.1rem;
-  color: #fff;
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.greeting-card:hover .card-front {
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.4),
+    inset 0 0 40px rgba(255, 255, 255, 0.15);
+}
+
+.card-icon {
+  font-size: 3.5rem;
   margin-bottom: 1rem;
-  font-family: 'Dancing Script', cursive;
+  display: block;
+  animation: iconBounce 2s ease-in-out infinite;
 }
 
-.wish-from {
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.card-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-hint {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
-}
-
-.add-wish-btn {
-  margin-top: 1rem;
-}
-
-/* Add Wish Popup Inputs */
-.wish-input {
-  width: 100%;
-  height: 100px;
-  padding: 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1rem;
-  font-family: inherit;
-  resize: none;
-  margin-bottom: 1rem;
-}
-
-.wish-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.wish-from-input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.wish-from-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Heart Message */
-.heart-message {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  margin-top: 1rem;
   font-style: italic;
+}
+
+/* Card Back - Revealed content */
+.greeting-card .card-back {
+  background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+  border: 2px solid rgba(236, 72, 153, 0.5);
+  transform: rotateY(180deg);
+  box-shadow: 
+    0 10px 40px rgba(236, 72, 153, 0.3),
+    inset 0 0 30px rgba(236, 72, 153, 0.1);
+  overflow-y: auto;
+}
+
+.revealed-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.card-from {
+  font-size: 0.9rem;
+  color: rgba(236, 72, 153, 0.9);
+  font-style: italic;
+  font-family: 'Dancing Script', cursive;
 }
 
 /* Fun Facts Section */
@@ -555,69 +757,136 @@ body::before{
 }
 
 .fun-facts-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: 'Dancing Script', cursive;
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
 }
 
 .fun-facts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-.fun-fact-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s, background 0.3s;
+/* Fun Fact Cards - Different colors */
+.fun-fact-card .card-front {
+  background: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #db2777 100%);
 }
 
-.fun-fact-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+.fun-fact-card:nth-child(2) .card-front {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
 }
 
-.fact-icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 1rem;
+.fun-fact-card:nth-child(3) .card-front {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
 }
 
-.fact-text {
-  color: #fff;
-  font-size: 1.1rem;
+.fun-fact-card:nth-child(4) .card-front {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+}
+
+.fun-fact-card:nth-child(5) .card-front {
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+}
+
+.fun-fact-card:nth-child(6) .card-front {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #dc2626 100%);
+}
+
+/* Question Screen */
+.question-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem;
+}
+
+.question-container {
+  text-align: center;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 400px;
+  width: 100%;
+}
+
+.question-container h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 2rem;
   font-family: 'Dancing Script', cursive;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.question-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  font-family: inherit;
+}
+
+.question-btn:first-of-type {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.question-btn:last-of-type {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.question-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* Responsive */
 @media (max-width: 640px) {
-  .countdown-container {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .greeting-card {
+    height: 320px;
   }
   
-  .countdown-box {
-    min-width: 70px;
-    padding: 0.8rem 1rem;
-  }
-  
-  .countdown-box span:first-child {
+  .card-title {
     font-size: 1.5rem;
   }
   
-  .cake {
-    width: 150px;
-    height: 120px;
+  .card-icon {
+    font-size: 2.5rem;
   }
   
-  .cake-bottom { width: 140px; height: 40px; }
-  .cake-middle { width: 115px; height: 32px; bottom: 35px; }
-  .cake-top { width: 90px; height: 28px; bottom: 62px; }
-  .candle { bottom: 90px; width: 10px; height: 30px; }
-  .flame { width: 10px; height: 16px; top: -16px; }
+  .revealed-text {
+    font-size: 1rem;
+  }
+  
+  .wishes-title,
+  .fun-facts-title {
+    font-size: 2rem;
+  }
+  
+  .timer-box {
+    min-width: 70px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .timer-number {
+    font-size: 1.8rem;
+  }
+  
+  .timer-title {
+    font-size: 1.2rem;
+  }
 }
-
