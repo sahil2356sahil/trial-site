@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Welcome!</title>
+  <title>Happy Birthday Amina!</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -50,9 +50,37 @@
         <h1 class="title">Happy Birthday Amina! 🎉</h1>
         <p class="subtitle">Specially made with love for you! 💕</p>
         
+        <!-- Age Timer -->
+        <div class="countdown-timer">
+          <h3 class="timer-title">⏰ Your Age Since You Graced This World 🌟</h3>
+          <div class="timer-grid">
+            <div class="timer-box">
+              <span class="timer-number" id="years">0</span>
+              <span class="timer-label">Years</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="months">0</span>
+              <span class="timer-label">Months</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="days">0</span>
+              <span class="timer-label">Days</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="hours">0</span>
+              <span class="timer-label">Hours</span>
+            </div>
+            <div class="timer-box">
+              <span class="timer-number" id="minutes">0</span>
+              <span class="timer-label">Minutes</span>
+            </div>
+          </div>
+        </div>
+        
         <!-- Cake with Candle -->
         <div class="cake-container" onclick="blowCandle()">
           <div class="cake">
+            <div class="cake-plate"></div>
             <div class="cake-bottom"></div>
             <div class="cake-middle"></div>
             <div class="cake-top"></div>
@@ -65,8 +93,8 @@
         
         <!-- Birthday Message (after candle is blown) -->
         <div id="birthday-reveal" style="display: none;">
-          <h2 class="birthday-reveal-text">🎂 My special one is you, kutti! Happiest birthday jaanu! 🥳💕 🎂</h2>
-          <p class="heart-message">Made with all my love ❤️</p>
+          <h2 class="birthday-reveal-text"></h2>
+          <p class="heart-message"></p>
         </div>
       </div>
       <div class="bg-shapes" aria-hidden="true">
@@ -77,76 +105,195 @@
       </div>
     </header>
 
-    <!-- Birthday Wishes Section -->
+    <!-- Birthday Wishes Section - Greeting Cards -->
     <section class="wishes-section">
       <h2 class="wishes-title">💌 Birthday Wishes</h2>
+      <p class="section-hint">Click on each card to read your special message! 💝</p>
       <div class="wishes-grid" id="wishes-grid">
-        <div class="wish-card">
-          <p class="wish-text">May all your dreams come true! 🌟</p>
-          <span class="wish-from">- From Your Secret Admirer</span>
+        <!-- Greeting Card 1 -->
+        <div class="greeting-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🎂</span>
+              <h3 class="card-title">To My Special One</h3>
+              <p class="card-hint">Click to open 💕</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">Happiest birthay kuttii.. you arr the one who fills my life with love & joy!!!.. 🌟
+                You are the most amazing person I know, and I am so grateful to have you in my life. May this year bring you endless happiness, success, and all the love you deserve! 💖
+              </p>
+              <span class="card-from">- From Your Jaan ❤️</span>
+            </div>
+          </div>
         </div>
-        <div class="wish-card">
-          <p class="wish-text">Stay beautiful, stay happy! ✨</p>
-          <span class="wish-from">- Someone Who Loves You</span>
+        
+        <!-- Greeting Card 2 -->
+        <div class="greeting-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🌟</span>
+              <h3 class="card-title">Dream Big</h3>
+              <p class="card-hint">Click to open ✨</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">May all your dreams come true! 🌟
+                You have the brightest soul I've ever known, and every moment with you is a treasure. Keep shining, keep smiling, and never stop being the amazing person you are! 
+              </p>
+              <span class="card-from">- From Your Secret Admirer 💫</span>
+            </div>
+          </div>
         </div>
-        <div class="wish-card">
-          <p class="wish-text">You deserve the best birthday ever! 🎁</p>
-          <span class="wish-from">- Your Biggest Fan</span>
+        
+        <!-- Greeting Card 3 -->
+        <div class="greeting-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">💖</span>
+              <h3 class="card-title">Beauty & Joy</h3>
+              <p class="card-hint">Click to open 🥰</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">Stay beautiful, stay happy! ✨
+                Your smile lights up my world like no other...
+              </p>
+              <span class="card-from">- Someone Who Loves You 💗</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Greeting Card 4 -->
+        <div class="greeting-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🌈</span>
+              <h3 class="card-title">My Sunshine</h3>
+              <p class="card-hint">Click to open ☀️</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">Your presence brightens my world, & I thankfull everyday for youhh...
+               I love you more than words can ever express! 
+              </p>
+              <span class="card-from">- Your Biggest Fan 💝</span>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="btn add-wish-btn" onclick="showAddWishPopup()">Add Your Wish 💝</button>
     </section>
 
-    <!-- Add Wish Popup -->
-    <div id="add-wish-popup" class="custom-popup">
-      <div class="popup-content">
-        <h2>Write Your Wish 💕</h2>
-        <textarea id="wish-input" class="wish-input" placeholder="Type your wish here..."></textarea>
-        <input type="text" id="wish-from-input" class="wish-from-input" placeholder="From:">
-        <button class="btn" onclick="addWish()">Submit Wish</button>
-        <button class="btn close-btn" onclick="closeAddWishPopup()">Cancel</button>
-      </div>
-    </div>
-
-    <!-- User-uploaded memories grid -->
-    <section class="user-section" style="max-width:1100px;margin:2rem auto;padding:0 1.25rem;">
-      <input id="user-files" type="file" accept="image/*" multiple style="display: none;">
-      <button class="btn file-btn" onclick="document.getElementById('user-files').click()">Upload Memories 📸</button>
-
-      <div class="memories-grid" id="memories-grid"></div>
-    </section>
-
-    <!-- Image modal -->
-    <div id="image-modal">
-      <img id="modal-img" alt="Full view">
-      <button id="close-modal">Close</button>
-    </div>
-
-    <!-- Fun Facts Section -->
+    <!-- Fun Facts Section - Greeting Cards -->
     <section class="fun-facts-section">
-      <h2 class="fun-facts-title">🎯 Fun Facts About You!</h2>
+      <h2 class="fun-facts-title">🎯 Fun & Amazing Facts About You!</h2>
+      <p class="section-hint">Click on each card to discover your special facts! ✨</p>
       <div class="fun-facts-grid">
-        <div class="fun-fact-card">
-          <span class="fact-icon">🌟</span>
-          <p class="fact-text">You light up every room you walk into!</p>
+        
+        <!-- Fun Fact Card 1 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🌟</span>
+              <h3 class="card-title">My Star</h3>
+              <p class="card-hint">Click to reveal! ⭐</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">when yuhh sayy---Jaan mai presaan hogyii hunn.., ye hogya, wo hogya, etc. etc.  lekin firr bhi mai thkk hunn! 
+                That's what makes youu unbreakable! 💪
+              </p>
+              <span class="card-from">- inspiration for me..🌟</span>
+            </div>
+          </div>
         </div>
-        <div class="fun-fact-card">
-          <span class="fact-icon">💖</span>
-          <p class="fact-text">Your smile is contagious!</p>
+        
+        <!-- Fun Fact Card 2 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">💖</span>
+              <h3 class="card-title">Your Smile</h3>
+              <p class="card-hint">Click to reveal! 😊</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">Smiling at every situation.. 
+                Your smile is my favorite thing.. It heals my mood, calms my gussaa, and makes everything okay. Keep smiling, kuttii..!!
+              </p>
+              <span class="card-from">- Your Smile Fan 💖</span>
+            </div>
+          </div>
         </div>
-        <div class="fun-fact-card">
-          <span class="fact-icon">🦋</span>
-          <p class="fact-text">You make the world more beautiful!</p>
+        
+        <!-- Fun Fact Card 3 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🦋</span>
+              <h3 class="card-title">Precious Moments</h3>
+              <p class="card-hint">Click to reveal! 💭</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">while calls slept whithin 3-4 seconds & I was like just looking at youhhh...!
+                sorry kbhi kbhi dara k jaga dene k liye... only for mastii
+                ab mai nahi presaan krunga th kon kregaa betuu...
+                </p>
+              <span class="card-from">- Your Watcher 🦋</span>
+            </div>
+          </div>
         </div>
-        <div class="fun-fact-card">
-          <span class="fact-icon">🎵</span>
-          <p class="fact-text">You make amazing memories wherever you go!</p>
+        
+        <!-- Fun Fact Card 4 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">📸</span>
+              <h3 class="card-title">Our Memories</h3>
+              <p class="card-hint">Click to reveal! 💫</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">Every day spend with you, every harkat by you, every thing with you was the best memories i made...
+                From our first meeting to all our late-night video calls, from our silly fights to our sweet reconciliations - every single moment is etched in my heart forever! 
+              </p>
+              <span class="card-from">- Memory Keeper 📸</span>
+            </div>
+          </div>
         </div>
+        
+        <!-- Fun Fact Card 5 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">💝</span>
+              <h3 class="card-title">Why I Love You</h3>
+              <p class="card-hint">Click to reveal! 💘</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">I love you not just because you're beautiful, not just because you're kind, but because of the way you make me feel when I'm with you.
+               Yuhh aree my greatest blessing. I love you more than yesterday but less than tomorrow! 💝
+              </p>
+              <span class="card-from">- Madly in Love 💝</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fun Fact Card 6 -->
+        <div class="greeting-card fact-card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-icon">🎁</span>
+              <h3 class="card-title">Birthday Wish</h3>
+              <p class="card-hint">Click to reveal! 🎊</p>
+            </div>
+            <div class="card-back">
+              <p class="revealed-text">My birthday wish for you is simple - all the happiness in the world, all the love in the universe, and me by your side forever!
+                You deserve the world and more, minee jaanuu.. Happest birthday kuttii...! 🎁💕
+              </p>
+              <span class="card-from">- Your Wish Grantor 🎁</span>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </section>
 
     <footer class="footer">
-      <small>Made with 💕 for Amina • Happy Birthday! 🎂</small>
+      <small>Made with 💕 for Amina • Happy Birthday! motii.. 🎂</small>
     </footer>
   </div>
 
@@ -165,16 +312,7 @@
   <div id="birthday-popup" class="custom-popup" style="display: none;">
     <div class="popup-content">
       <h2>🎂 Today is someone's special birthday! 🎂</h2>
-      <button class="btn" onclick="showSpecialMessage()">Ohh</button>
-    </div>
-  </div>
-
-  <!-- Second Popup: Special Message with Make a Wish -->
-  <div id="special-popup" class="custom-popup" style="display: none;">
-    <div class="popup-content">
-      <h2>My special one is you, kutti! Happiest birthday jaanu! 🥳💕</h2>
-      <p class="heart-message">Made with all my love ❤️</p>
-      <button class="btn make-wish-btn" onclick="makeAWish()">✨ Make a Wish ✨</button>
+      <button class="btn" onclick="makeAWish()">Ohh</button>
     </div>
   </div>
 
@@ -186,12 +324,6 @@
     </div>
   </div>
 
-  <!-- Image modal for memories -->
-  <div id="image-modal" style="display: none;">
-    <img id="modal-img" alt="Full view">
-    <button id="close-modal">Close</button>
-  </div>
-
   <script>
     // Global state
     let musicStarted = false;
@@ -199,12 +331,6 @@
     // Show first popup when Yes is clicked
     function showBirthdayPopup() {
       document.getElementById('birthday-popup').style.display = 'flex';
-    }
-    
-    // Show special message popup
-    function showSpecialMessage() {
-      document.getElementById('birthday-popup').style.display = 'none';
-      document.getElementById('special-popup').style.display = 'flex';
     }
     
     // Show no popup
@@ -220,7 +346,7 @@
     // Make a wish - reveal the full birthday site!
     function makeAWish() {
       // Hide all popups
-      document.getElementById('special-popup').style.display = 'none';
+      document.getElementById('birthday-popup').style.display = 'none';
       document.getElementById('question-screen').style.display = 'none';
       
       // Show birthday content
@@ -233,20 +359,12 @@
       // Start sparkle effects
       startSparkles();
       
-      // Show birthday reveal message after a short delay
-      setTimeout(() => {
-        document.getElementById('birthday-reveal').style.display = 'block';
-      }, 1500);
+      // Start countdown timer
+      startCountdown();
     }
     
     // Close popups when clicking outside
     document.getElementById('birthday-popup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-      }
-    });
-    
-    document.getElementById('special-popup').addEventListener('click', function(e) {
       if (e.target === this) {
         this.style.display = 'none';
       }
@@ -257,17 +375,58 @@
         this.style.display = 'none';
       }
     });
-
-    // Add Wish Popup handlers
-    document.getElementById('add-wish-popup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-      }
-    });
   </script>
 
-  <!-- Birthday Content Scripts (only run after wish is made) -->
+  <!-- Birthday Content Scripts -->
   <script>
+    // Birth date: March 11, 2004 at 8:45 PM
+    const birthDate = new Date('2004-03-11T20:45:00');
+    
+    // Age Timer Function - Shows how old she is since birth
+    function startCountdown() {
+      function updateTimer() {
+        const now = new Date();
+        
+        // Calculate age in years, months, days, hours, minutes
+        let years = now.getFullYear() - birthDate.getFullYear();
+        let months = now.getMonth() - birthDate.getMonth();
+        let days = now.getDate() - birthDate.getDate();
+        let hours = now.getHours() - birthDate.getHours();
+        let minutes = now.getMinutes() - birthDate.getMinutes();
+        
+        // Adjust for negative values (when current time is before birth time in the day/month)
+        if (minutes < 0) {
+          minutes += 60;
+          hours--;
+        }
+        if (hours < 0) {
+          hours += 24;
+          days--;
+        }
+        if (days < 0) {
+          // Borrow days from previous month
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += prevMonth.getDate();
+          months--;
+        }
+        if (months < 0) {
+          months += 12;
+          years--;
+        }
+        
+        // Update the display
+        document.getElementById('years').textContent = years;
+        document.getElementById('months').textContent = months;
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+      }
+      
+      // Update every minute
+      updateTimer();
+      setInterval(updateTimer, 60000);
+    }
+
     // Music Toggle
     function startMusic() {
       if (musicStarted) return;
@@ -303,7 +462,27 @@
       }
     }
 
-    // Candle Blowing
+    // Messages for typing animation
+    const wishMessage = "🎂 You are the special one, kutti! Happiest birthday jaanu! 🥳💕 🎂";
+    const loveMessage = "Love you kuttiiii!!!... ❤️";
+    
+    // Typing animation function
+    function typeText(element, text, speed = 50, callback) {
+      let i = 0;
+      element.textContent = '';
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else if (callback) {
+          callback();
+        }
+      }
+      type();
+    }
+    
+    // Candle Blowing - reveals the birthday message with typing animation
     let candleBlown = false;
     function blowCandle() {
       if (candleBlown) return;
@@ -313,6 +492,23 @@
       setTimeout(() => {
         flame.style.display = 'none';
       }, 500);
+      
+      // Show birthday reveal message with typing animation after blowing the candle
+      setTimeout(() => {
+        const revealDiv = document.getElementById('birthday-reveal');
+        revealDiv.style.display = 'block';
+        
+        const titleEl = revealDiv.querySelector('.birthday-reveal-text');
+        const messageEl = revealDiv.querySelector('.heart-message');
+        
+        // Type the first message
+        typeText(titleEl, wishMessage, 50, () => {
+          // After first message is done, type the second message
+          setTimeout(() => {
+            typeText(messageEl, loveMessage, 50);
+          }, 500);
+        });
+      }, 1000);
     }
 
     // Sparkle Effect
@@ -335,202 +531,17 @@
       setInterval(createSparkle, 300);
     }
 
-    // Wish Functions
-    function showAddWishPopup() {
-      document.getElementById('add-wish-popup').style.display = 'flex';
+    // Card Flip Function
+    function flipCard(card) {
+      card.classList.toggle('flipped');
     }
-    
-    function closeAddWishPopup() {
-      document.getElementById('add-wish-popup').style.display = 'none';
-      document.getElementById('wish-input').value = '';
-      document.getElementById('wish-from-input').value = '';
-    }
-    
-    function addWish() {
-      const wishText = document.getElementById('wish-input').value.trim();
-      const wishFrom = document.getElementById('wish-from-input').value.trim() || 'Anonymous';
-      
-      if (!wishText) {
-        alert('Please write a wish!');
-        return;
-      }
-      
-      const wishesGrid = document.getElementById('wishes-grid');
-      const newWish = document.createElement('div');
-      newWish.className = 'wish-card';
-      newWish.innerHTML = `
-        <p class="wish-text">${wishText}</p>
-        <span class="wish-from">- ${wishFrom}</span>
-      `;
-      newWish.style.animation = 'wishPopIn 0.5s ease';
-      wishesGrid.appendChild(newWish);
-      
-      // Save to localStorage
-      const wishes = JSON.parse(localStorage.getItem('birthday_wishes') || '[]');
-      wishes.push({ text: wishText, from: wishFrom });
-      localStorage.setItem('birthday_wishes', JSON.stringify(wishes));
-      
-      closeAddWishPopup();
-    }
-    
-    // Load saved wishes
-    function loadWishes() {
-      const wishes = JSON.parse(localStorage.getItem('birthday_wishes') || '[]');
-      const wishesGrid = document.getElementById('wishes-grid');
-      if (!wishesGrid) return;
-      
-      wishes.forEach(wish => {
-        const wishCard = document.createElement('div');
-        wishCard.className = 'wish-card';
-        wishCard.innerHTML = `
-          <p class="wish-text">${wish.text}</p>
-          <span class="wish-from">- ${wish.from}</span>
-        `;
-        wishesGrid.appendChild(wishCard);
-      });
-    }
-    loadWishes();
 
-    // Image upload functionality
-    (function(){
-      const MAX_IMAGES = 50;
-      const STORAGE_KEY = 'permanent_images';
-      
-      const grid = document.getElementById('memories-grid');
-      const modal = document.getElementById('image-modal');
-      const modalImg = document.getElementById('modal-img');
-      const fileInput = document.getElementById('user-files');
-      const closeModal = document.getElementById('close-modal');
-      
-      if (!grid || !fileInput) return;
-      
-      function loadSavedImages() {
-        try {
-          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch(e) {
-          return [];
-        }
-      }
-
-      function saveImagesToLocalStore() {
-        try {
-          const imgElements = grid.querySelectorAll('.permanent-img') || [];
-          const srcArray = Array.from(imgElements).map(img => img.src);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(srcArray));
-        } catch(e) {
-          console.error("Error saving images:", e);
-        }
-      }
-      
-      function restorePermanentImages() {
-        try {
-          const saved = loadSavedImages();
-          if (saved.length === 0) return;
-          for (const srcOfSaved of saved) {
-            addImageToGrid(srcOfSaved, true);
-          }
-        } catch(e) {
-          console.error("Error restoring images:", e);
-        }
-      }
-      
-      function addImageToGrid(srcUrl, isPermanent) {
-        const img = document.createElement("img");
-        img.src = srcUrl;
-        if (isPermanent) {
-          img.className = "permanent-img";
-        }
-        img.style.opacity = "0";
-        grid.appendChild(img);
-        setTimeout(() => {
-          img.style.opacity = "1";
-        }, 100);
-        
-        img.addEventListener('click', () => {
-          modalImg.src = img.src;
-          modal.style.display = 'flex';
-        });
-      }
-      
-      function deleteImageHandler(event) {
-        if (!event.target.classList.contains("delete-btn")) return;
-        
-        const imgElement = event.target.previousElementSibling;
-        if (imgElement) {
-          imgElement.remove();
-        }
-        event.target.remove();
-        
-        saveImagesToLocalStore();
-      }
-      
-      closeModal?.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-
-      modal?.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-      
-      grid.addEventListener('click', deleteImageHandler);
-
-      fileInput.addEventListener('change', async (e) => {
-        const files = Array.from(e.target.files || []);
-        if (!files.length) return;
-
-        const currentImages = grid.querySelectorAll('img').length;
-        const remainingSlots = MAX_IMAGES - currentImages;
-
-        if (remainingSlots <= 0) {
-          alert('Maximum image limit reached! You can only store up to 50 images.');
-          e.target.value = null;
-          return;
-        }
-
-        const filesToProcess = files.slice(0, remainingSlots);
-        
-        if (files.length > remainingSlots) {
-          alert(`You can only upload ${remainingSlots} more image(s).`);
-        }
-
-        const readFile = (file) => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = (e) => resolve(e.target.result);
-            reader.onerror = () => resolve(null);
-            reader.readAsDataURL(file);
-          });
-        };
-
-        for (const file of filesToProcess) {
-          try {
-            const dataUrl = await readFile(file);
-            if (!dataUrl) continue;
-            addImageToGrid(dataUrl, true);
-          } catch (err) {
-            console.error('Error processing file:', file.name, err);
-          }
-        }
-
-        saveImagesToLocalStore();
-        e.target.value = null;
-      });
-      
-      restorePermanentImages();
-    })();
-
-    // Add CSS animation for extinguish
+    // Add CSS animations dynamically
     const style = document.createElement('style');
     style.textContent = `
       @keyframes extinguish {
         0% { opacity: 1; transform: scale(1); }
         100% { opacity: 0; transform: scale(0); }
-      }
-      @keyframes wishPopIn {
-        0% { opacity: 0; transform: scale(0.5); }
-        100% { opacity: 1; transform: scale(1); }
       }
       .question-screen {
         min-height: 100vh;
@@ -566,21 +577,6 @@
       .question-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      }
-      .make-wish-btn {
-        margin-top: 1.5rem;
-        padding: 1rem 3rem;
-        font-size: 1.3rem;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        border: none;
-        border-radius: 50px;
-        color: white;
-        cursor: pointer;
-        animation: pulse 2s infinite;
-      }
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
       }
     `;
     document.head.appendChild(style);
